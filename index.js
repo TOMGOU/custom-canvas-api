@@ -9,8 +9,6 @@
  */
 const drawRoundRectPath = (ctx, x, y, width, height, radius = 10) => {
   ctx.beginPath()
-  ctx.setFillStyle('transparent')
-  ctx.setStrokeStyle('transparent')
   // 从右下角顺时针绘制，弧度从0到1/2PI
   ctx.arc(x + width - radius, y + height - radius, radius, 0, Math.PI / 2)
   // 矩形下边线

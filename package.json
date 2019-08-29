@@ -1,6 +1,6 @@
 {
   "name": "custom-canvas-api",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "custom canvas api for common shape",
   "main": "index.js",
   "scripts": {
