@@ -82,7 +82,7 @@ export const strokeRoundRect = (ctx, x, y, width, height, radius = 10, strokeCol
 export const fillArrowCircle = (ctx, x, y, r, angle = 0.1, len = 20, fillColor = '#fff') => {
   ctx.beginPath()
   ctx.arc(x, y, r, angle * Math.PI, (2 - angle) * Math.PI)
-  ctx.lineTo(x + len, y)
+  ctx.lineTo(x + r + len, y)
   ctx.closePath()
   ctx.save()
   typeof ctx.setFillStyle === 'function' ? ctx.setFillStyle(fillColor) : ctx.fillStyle = fillColor
@@ -103,7 +103,7 @@ export const fillArrowCircle = (ctx, x, y, r, angle = 0.1, len = 20, fillColor =
 export const strokeArrowCircle = (ctx, x, y, r, angle = 0.1, len = 20, strokeColor = '#fff') => {
   ctx.beginPath()
   ctx.arc(x, y, r, angle * Math.PI, (2 - angle) * Math.PI)
-  ctx.lineTo(x + len, y)
+  ctx.lineTo(x + r + len, y)
   ctx.closePath()
   ctx.save()
   typeof ctx.setStrokeStyle === 'function' ? ctx.setStrokeStyle(strokeColor) : ctx.strokeStyle = strokeColor
