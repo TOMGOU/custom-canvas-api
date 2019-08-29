@@ -46,7 +46,7 @@ export const fillRoundRect = (ctx, x, y, width, height, radius = 10, fillColor =
   if (2 * radius > width || 2 * radius > height) { return false }
   ctx.save()
   drawRoundRectPath(ctx, x, y, width, height, radius)
-  ctx.setFillStyle(fillColor)
+  ctx.setFillStyle ? ctx.setFillStyle(fillColor) : ctx.fillStyle = fillColor
   ctx.fill()
   ctx.restore()
 }
@@ -66,7 +66,7 @@ export const strokeRoundRect = (ctx, x, y, width, height, radius = 10, strokeCol
   if (2 * radius > width || 2 * radius > height) { return false }
   ctx.save()
   drawRoundRectPath(ctx, x, y, width, height, radius)
-  ctx.setStrokeStyle(strokeColor)
+  ctx.setStrokeStyle ? ctx.setStrokeStyle(strokeColor) : ctx.strokeStyle = strokeColor
   ctx.stroke()
   ctx.restore()
 }
@@ -87,7 +87,7 @@ export const fillArrowCircle = (ctx, x, y, r, angle = 0.1, len = 20, fillColor =
   ctx.lineTo(x + len, y)
   ctx.closePath()
   ctx.save()
-  ctx.fillStyle = fillColor
+  ctx.setFillStyle ? ctx.setFillStyle(fillColor) : ctx.fillStyle = fillColor
   ctx.fill()
   ctx.restore()
 }
@@ -108,7 +108,7 @@ export const strokeArrowCircle = (ctx, x, y, r, angle = 0.1, len = 20, strokeCol
   ctx.lineTo(x + len, y)
   ctx.closePath()
   ctx.save()
-  ctx.strokeStyle = strokeColor
+  ctx.setStrokeStyle ? ctx.setStrokeStyle(strokeColor) : ctx.strokeStyle = strokeColor
   ctx.stroke()
   ctx.restore()
 }
