@@ -10,6 +10,20 @@ The easiest way to install custom-canvas-api is with [`npm`][npm].
 npm install custom-canvas-api
 ```
 
+## example
+[demo]: https://tomgou.github.io/canvas-example/www/index.html#/
+
+## Usage
+```
+import { fillAutoWrapText } from 'custom-canvas-api';
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+ctx.fillStyle= '#000';
+ctx.textBaseline = 'top';
+const text = '当然啦，除上面的场景文字识别外，历史悠久的手写体的识别到现在还是一件具有挑战的课题，在深度学习的浪潮下，手写体的识别已经前进了一大步，但是尚且没达到印刷体识别那种可以商用的地步，所以啊，OCR的研究还得不断地进行下去。';
+fillAutoWrapText(ctx, text, 0, 0, 300, 50, '20px PingFang-SC-Heavy');
+```
 
 ## Components
 
@@ -109,16 +123,4 @@ Currently, it includes three special shapes: Round Rect, Arrow Circle and Auto W
 * @returns { number } info.y 新的起点y坐标
 * @returns { number } info.rows 文字行数
 */
-```
-
-## examples
-```
-import { fillAutoWrapText } from 'custom-canvas-api';
-
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-ctx.fillStyle= '#000';
-ctx.textBaseline = 'top';
-const text = '当然啦，除上面的场景文字识别外，历史悠久的手写体的识别到现在还是一件具有挑战的课题，在深度学习的浪潮下，手写体的识别已经前进了一大步，但是尚且没达到印刷体识别那种可以商用的地步，所以啊，OCR的研究还得不断地进行下去。';
-fillAutoWrapText(ctx, text, 0, 0, 300, 50, '20px PingFang-SC-Heavy');
 ```
