@@ -11,6 +11,8 @@ npm install custom-canvas-api
 ```
 
 ## example
+[`demo`][demo]
+
 [demo]: https://tomgou.github.io/canvas-example/www/index.html#/
 
 ## Usage
