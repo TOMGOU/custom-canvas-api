@@ -142,7 +142,7 @@ export const textWrap = (obj) => {
 }
 
 /**
-* @description 自动换行填充文字
+* @description 自动换行填充文字(可带省略号)
 * @param { object } ctx canvas对象
 * @param { string } text 文字内容
 * @param { number } x 文字起点x坐标
@@ -150,34 +150,37 @@ export const textWrap = (obj) => {
 * @param { number } widthLimit 文字换行宽度
 * @param { number } lineHeight 文字行高
 * @param { string } font 文字字体
+* @param { number } lines 超出省略号显示的文字行数
 * @returns { object } info 返回对象
 * @returns { number } info.x 新的起点x坐标
 * @returns { number } info.y 新的起点y坐标
 * @returns { number } info.rows 文字行数
 */
-export const fillAutoWrapText = (ctx, text, x, y, widthLimit, lineHeight = 30, font = '20px PingFang-SC-Heavy') => {
+export const fillAutoWrapText = (ctx, text, x, y, widthLimit, lineHeight = 30, font = '20px PingFang-SC-Heavy', lines) => {
   const result = textWrap({
     ctx,
     widthLimit,
     text,
     font,
   })
+  const newText = (result.length > lines + 1) && lines ? text.substring(0, result[lines] - 1) + '...' : text
+  const newResult = lines ? result.filter((item, index) => index <= lines).map((item, index) => index === lines ? item + 2 : item) : result
   if (result.length - 1) {
-    result.reduce((pre, cur, index) => {
-      ctx.fillText(text.substring(pre, cur), x, y + lineHeight * (index - 1), widthLimit)
+    newResult.reduce((pre, cur, index) => {
+      ctx.fillText(newText.substring(pre, cur), x, y + lineHeight * (index - 1), widthLimit)
       return cur
     })
   }
   const info = {
     x, 
-    y: (result.length - 1) * lineHeight + y,
-    rows: result.length - 1
+    y: (newResult.length - 1) * lineHeight + y,
+    rows: newResult.length - 1
   }
   return info
 }
 
 /**
-* @description 自动换行中空文字
+* @description 自动换行中空文字(可带省略号)
 * @param { object } ctx canvas对象
 * @param { string } text 文字内容
 * @param { number } x 文字起点x坐标
@@ -185,28 +188,31 @@ export const fillAutoWrapText = (ctx, text, x, y, widthLimit, lineHeight = 30, f
 * @param { number } widthLimit 文字换行宽度
 * @param { number } lineHeight 文字行高
 * @param { string } font 文字字体
+* @param { number } lines 超出省略号显示的文字行数
 * @returns { object } info 返回对象
 * @returns { number } info.x 新的起点x坐标
 * @returns { number } info.y 新的起点y坐标
 * @returns { number } info.rows 文字行数
 */
-export const strokeAutoWrapText = (ctx, text, x, y, widthLimit, lineHeight = 30, font = '20px PingFang-SC-Heavy') => {
+export const strokeAutoWrapText = (ctx, text, x, y, widthLimit, lineHeight = 30, font = '20px PingFang-SC-Heavy', lines) => {
   const result = textWrap({
     ctx,
     widthLimit,
     text,
     font,
   })
+  const newText = (result.length > lines + 1) && lines ? text.substring(0, result[lines] - 1) + '...' : text
+  const newResult = lines ? result.filter((item, index) => index <= lines).map((item, index) => index === lines ? item + 2 : item) : result
   if (result.length - 1) {
-    result.reduce((pre, cur, index) => {
-      ctx.strokeText(text.substring(pre, cur), x, y + lineHeight * (index - 1), widthLimit)
+    newResult.reduce((pre, cur, index) => {
+      ctx.strokeText(newText.substring(pre, cur), x, y + lineHeight * (index - 1), widthLimit)
       return cur
     })
   }
   const info = {
     x, 
-    y: (result.length - 1) * lineHeight + y,
-    rows: result.length - 1
+    y: (newResult.length - 1) * lineHeight + y,
+    rows: newResult.length - 1
   }
   return info
 }
